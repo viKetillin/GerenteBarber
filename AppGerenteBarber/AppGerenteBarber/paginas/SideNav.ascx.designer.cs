@@ -7,11 +7,11 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace AppGerenteBarber
+namespace AppCardapio.paginas
 {
 
 
-    public partial class _Default
+    public partial class SideNav
     {
     }
 }
