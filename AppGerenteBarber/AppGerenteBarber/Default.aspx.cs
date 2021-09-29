@@ -11,7 +11,7 @@ namespace AppGerenteBarber
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            base.Response.Redirect("paginas/navegacao/dashboard.aspx");
+            base.Response.Redirect("paginas/cadastros/Dashboard.aspx");
         }
     }
 }

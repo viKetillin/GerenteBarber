@@ -15,7 +15,6 @@ namespace AppGerenteBarber
         {
             // Código que é executado na inicialização do aplicativo
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

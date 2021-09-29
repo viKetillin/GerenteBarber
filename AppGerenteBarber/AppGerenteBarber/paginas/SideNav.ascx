@@ -22,13 +22,13 @@
         </a>
     </li>
     <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Cadastro cardápios
+  <div class="sidebar-heading">
+        Cadastro serviços
     </div>
     <li class="nav-item">
-        <a class="nav-link" href="ListaCardapio.aspx?menu=cardapio">
+        <a class="nav-link" href="ListaServicos.aspx?menu=tipoCategoria">
          <i class="fas fa-utensils"></i>
-            <span>Cardápio</span>
+            <span>Lista serviços</span>
         </a>
     </li>
     <li class="nav-item">
