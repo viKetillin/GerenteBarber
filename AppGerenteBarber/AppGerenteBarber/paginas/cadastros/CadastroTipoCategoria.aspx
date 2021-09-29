@@ -24,7 +24,6 @@
     <!-- Custom styles for this template-->
     <link href="../../assets/estilos/sb-admin-2.min.css" rel="stylesheet" />
     <link href="../../assets/estilos/global.css" rel="stylesheet" />
-    <link href="cadastroCardapio.css" rel="stylesheet" />
 </head>
 
 <body id="page-top" class="administrativo">
@@ -44,18 +43,12 @@
                                 <div class="card-body">
                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição em português">
-                                            <label for="inputDescricao">Descrição categoria</label>
-                                        </div>
-                                        <div class="divSelect mt-2">
-                                            <select class="form-select" aria-label="Select franquia" id="selectFranquia">
-                                                <option selected>Selecione a franquia</option>
-                                            </select>
-                                            <button class="btn btn-dark ml-2" onclick="cadastroFranquia()">Nova franquia</button>
+                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Nome tipo categoria">
+                                            <label for="inputDescricao">Tipo categoria</label>
                                         </div>
                                         <div class="mt-2">
-                                            <button class="btn btn-success mr-2" onclick="adicionarCardapio()">Salvar</button>
-                                            <button class="btn btn-secondary" onclick="listaCardapio()">Cancelar</button>
+                                            <button class="btn btn-success mr-2" onclick="adicionarTipoCategoria()">Salvar</button>
+                                            <button class="btn btn-secondary" onclick="listaServico()">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>

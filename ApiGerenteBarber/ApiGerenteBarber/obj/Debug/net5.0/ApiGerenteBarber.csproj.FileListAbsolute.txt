@@ -134,3 +134,4 @@ D:\GerenteBarber\ApiGerenteBarber\ApiGerenteBarber\obj\Debug\net5.0\ApiGerenteBa
 D:\GerenteBarber\ApiGerenteBarber\ApiGerenteBarber\obj\Debug\net5.0\ref\ApiGerenteBarber.dll
 D:\GerenteBarber\ApiGerenteBarber\ApiGerenteBarber\obj\Debug\net5.0\ApiGerenteBarber.pdb
 D:\GerenteBarber\ApiGerenteBarber\ApiGerenteBarber\obj\Debug\net5.0\ApiGerenteBarber.genruntimeconfig.cache
+D:\GerenteBarber\ApiGerenteBarber\ApiGerenteBarber\obj\Debug\net5.0\ApiGerenteBarber.csproj.AssemblyReference.cache

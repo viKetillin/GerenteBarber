@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/TipoCategorias/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarTipoCategoria")]
         public async Task<IActionResult> PutTipoCategoria(int id, TipoCategoria tipoCategoria)
         {
             if (id != tipoCategoria.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/TipoCategorias
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarTipoCategoria")]
         public async Task<ActionResult<TipoCategoria>> PostTipoCategoria(TipoCategoria tipoCategoria)
         {
             _context.TiposCategorias.Add(tipoCategoria);

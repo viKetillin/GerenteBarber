@@ -1,52 +1,12 @@
-﻿var idCardapio = recuperarUrlParametro("id");
+﻿var idTipoCategoria = recuperarUrlParametro("id");
 
 $(document).ready(function () {
-    recuperarCombos();
+    recuperarDadosCardapio();
 });
-
-function recuperarCombos() {
-    $.ajax({
-        url: "https://localhost:44393/api/ProdutoPrecos/recuperarProdutoPrecos",
-        type: "GET",
-        dataType: "json",
-        success: function (result) {
-            html = "";
-            for (var i = 0; i < result.length; i++) {
-                html += '<option value="' + result[i].id + '"> ' + result[i].produto.nomeProduto + ' - R$ ' + (result[i].valor).toFixed(2) + ' </option>'
-            }
-
-            $("#selectProduto").append(html)
-        },
-        complete: function (result) {
-            if (idCardapio != "" && idCardapio != null)
-                recuperarDadosCardapio()
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
-        }
-    });
-
-    $.ajax({
-        url: "https://localhost:44393/api/Franquias/recuperarFranquias",
-        type: "GET",
-        dataType: "json",
-        success: function (result) {
-            html = "";
-            for (var i = 0; i < result.length; i++) {
-                html += '<option value="' + result[i].id + '"> ' + result[i].cidade + ' </option>'
-            }
-
-            $("#selectFranquia").append(html)
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
-        }
-    });
-}
 
 function recuperarDadosCardapio() {
     $.ajax({
-        url: "https://localhost:44393/api/Cardapios/recuperarCardapio?id=" + parseFloat(idCardapio),
+        url: "https://localhost:44377/api/Cardapios/recuperarCardapio?id=" + parseFloat(idTipoCategoria),
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -59,24 +19,22 @@ function recuperarDadosCardapio() {
     });
 }
 
-function adicionarCardapio(e) {
-
+function adicionarTipoCategoria(e) {
     var type = null;
     var url = null;
 
-    if (idCardapio != "" && idCardapio != null) {
+    if (idTipoCategoria != "" && idTipoCategoria != null) {
         type = "PUT";
-        url = "Cardapios/editarCardapio?id=" + parseFloat(idCardapio);
+        url = "TipoCategorias/editarTipoCategoria?id=" + parseFloat(idTipoCategoria);
     }
     else {
         type = "POST";
-        url = "Cardapios/adicionarCardapio";
+        url = "TipoCategorias/adicionarTipoCategoria";
     }
 
-    var cardapio = {
-        Id: idCardapio != null ? parseFloat(idCardapio) : 0,
-        ProdutoPrecoId: $("#selectProduto").val(),
-        FranquiaId: $("#selectFranquia").val(),
+    var tipoCategoria = {
+        Id: idTipoCategoria != null ? parseFloat(idTipoCategoria) : 0,
+        DescricaoTipoCategoria: $("#inputDescricao").val(),
     };
 
     $.ajax({
@@ -84,28 +42,20 @@ function adicionarCardapio(e) {
         contentType: "application/json",
         cache: false,
         url: urlApi + url,
-        data: JSON.stringify(cardapio),
+        data: JSON.stringify(tipoCategoria),
         success: function (response) {
-            if (idCardapio != "" && idCardapio != null)
-                notificacaoSucesso("Cardápio editado com sucesso.");
+            if (idTipoCategoria != "" && idTipoCategoria != null)
+                notificacaoSucesso("Tipo de categoria editada com sucesso.");
             else
-                notificacaoSucesso("Cardápio adicionado com sucesso.");
-            listaCardapio();
+                notificacaoSucesso("Tipo de categoria adicionada com sucesso.");
+            listaServicos();
         },
         error: function () {
-            notificacaoErro("Falha ao salvar o cardápio.");
+            notificacaoErro("Falha ao salvar o tipo de categoria.");
         }
     });
 }
 
-function listaCardapio() {
-    window.location.href = "listaCardapio.aspx?menu=cardapio";
-}
-
-function cadastroPrecoProduto() {
-    window.location.href = 'CadastroPreco.aspx';
-}
-
-function cadastroFranquia() {
-    window.location.href = 'CadastroFranquia.aspx';
+function listaServicos() {
+    window.location.href = "listaServicos.aspx?menu=tipoCategoria";
 }

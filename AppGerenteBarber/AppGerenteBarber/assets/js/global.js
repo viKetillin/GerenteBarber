@@ -1,4 +1,4 @@
-﻿var urlApi = "https://localhost:44393/api/";
+﻿var urlApi = "https://localhost:44377/api/";
 
 //#region [Array weekday]
 var weekday = new Array(7);
@@ -23,7 +23,7 @@ diaSemana[6] = "Sábado";
 //#endregion [Array dia semana]
 
 function recuperarUrlApi() {
-    return "https://localhost:44393/api/";
+    return "https://localhost:44377/api/";
 }
 
 function mensagemConfirmacao(titulo, mensagem) {
