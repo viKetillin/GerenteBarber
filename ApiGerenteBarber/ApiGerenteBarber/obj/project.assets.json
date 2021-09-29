@@ -7400,28 +7400,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vitor\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\onezp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber.csproj",
+      "projectUniqueName": "E:\\Gruiper\\Gerentiz\\GerenteBarber\\Arquivos\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber.csproj",
       "projectName": "ApiGerenteBarber",
-      "projectPath": "D:\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber.csproj",
-      "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
-      "outputPath": "D:\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\obj\\",
+      "projectPath": "E:\\Gruiper\\Gerentiz\\GerenteBarber\\Arquivos\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber.csproj",
+      "packagesPath": "C:\\Users\\onezp\\.nuget\\packages\\",
+      "outputPath": "E:\\Gruiper\\Gerentiz\\GerenteBarber\\Arquivos\\GerenteBarber\\ApiGerenteBarber\\ApiGerenteBarber\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\onezp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
