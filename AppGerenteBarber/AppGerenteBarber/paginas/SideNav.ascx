@@ -8,7 +8,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-hamburger"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">GERENTE BARBER</div>
+        <div class="sidebar-brand-text mx-3">Brasa Admin</div>
     </a>
 
     <!-- Divider -->
