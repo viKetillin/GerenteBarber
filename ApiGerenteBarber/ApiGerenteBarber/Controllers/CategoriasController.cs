@@ -22,14 +22,14 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Categorias
-        [HttpGet]
+        [HttpGet("recuperarCategorias")]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
         {
-            return await _context.Categorias.ToListAsync();
+            return await _context.Categorias.Include(f => f.TipoCategoria).ToListAsync();
         }
 
         // GET: api/Categorias/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarCategoria")]
         public async Task<ActionResult<Categoria>> GetCategoria(int id)
         {
             var categoria = await _context.Categorias.FindAsync(id);
@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/Categorias/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarCategoria")]
         public async Task<IActionResult> PutCategoria(int id, Categoria categoria)
         {
             if (id != categoria.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/Categorias
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarCategoria")]
         public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
         {
             _context.Categorias.Add(categoria);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/Categorias/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirCategoria")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
             var categoria = await _context.Categorias.FindAsync(id);

@@ -1,18 +1,18 @@
 ﻿var menu = recuperarUrlParametro("menu");
 
 $(document).ready(function () {
-    recuperarFranquias();
-    recuperarDiasFuncionamento();
-    recuperarHorariosFuncionamento();
+    recuperarTipoCategoria();
+    recuperarCategorias();
+    //recuperarHorariosFuncionamento();
 
     if (menu == "tipoCategoria") {
         $('.nav-tabs a[href="#tipoCategoria"]').tab('show');
         $("#btnTipoCategoria").show();
         $("#tituloPagina").text("Lista tipo categorias");
-    } else if (menu == "diaFuncionamento") {
-        $('.nav-tabs a[href="#diaFuncionamento"]').tab('show');
-        $("#btnDiasFuncionamento").show();
-        $("#tituloPagina").text("Lista dias funcionamento");
+    } else if (menu == "categoria") {
+        $('.nav-tabs a[href="#categoria"]').tab('show');
+        $("#btnCategoria").show();
+        $("#tituloPagina").text("Lista categorias");
     } else if (menu == "horarioFuncionamento") {
         $('.nav-tabs a[href="#horarioFuncionamento"]').tab('show');
         $("#btnHorariosFuncionamento").show();
@@ -20,23 +20,23 @@ $(document).ready(function () {
     }
 
     $(".nav-tabs").click(function () {
-        if ($(".nav-tabs a[href='#franquias']").hasClass("active") == true) {
-            $("#btnFranquias").show();
-            $("#btnDiasFuncionamento").hide();
+        if ($(".nav-tabs a[href='#tipoCategoria']").hasClass("active") == true) {
+            $("#btnTipoCategoria").show();
+            $("#btnCategoria").hide();
             $("#btnHorariosFuncionamento").hide();
 
-            $("#tituloPagina").text("Lista franquias");
+            $("#tituloPagina").text("Lista tipo categorias");
         }
-        else if ($('.nav-tabs a[href="#diaFuncionamento"]').hasClass("active") == true) {
-            $("#btnFranquias").hide();
-            $("#btnDiasFuncionamento").show();
+        else if ($('.nav-tabs a[href="#categoria"]').hasClass("active") == true) {
+            $("#btnTipoCategoria").hide();
+            $("#btnCategoria").show();
             $("#btnHorariosFuncionamento").hide();
 
-            $("#tituloPagina").text("Lista dias funcionamento");
+            $("#tituloPagina").text("Lista categorias");
         }
         else if ($('.nav-tabs a[href="#horarioFuncionamento"]').hasClass("active") == true) {
-            $("#btnFranquias").hide();
-            $("#btnDiasFuncionamento").hide();
+            $("#btnTipoCategoria").hide();
+            $("#btnCategoria").hide();
             $("#btnHorariosFuncionamento").show();
 
             $("#tituloPagina").text("Lista horários funcionamento");
@@ -44,9 +44,9 @@ $(document).ready(function () {
     });
 });
 
-function recuperarFranquias() {
+function recuperarTipoCategoria() {
     $.ajax({
-        url: recuperarUrlApi() + "Franquias/recuperarFranquias",
+        url: recuperarUrlApi() + "TipoCategorias/recuperarTiposCategoria",
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -54,12 +54,11 @@ function recuperarFranquias() {
             for (var i = 0; i < result.length; i++) {
                 html += ' <tr> ';
                 html += '     <td>' + result[i].id + '</td> ';
-                html += '     <td>' + result[i].cidade + '</td> ';
-                html += '     <td>' + result[i].endereco + '</td> ';
-                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroFranquias(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirFranquia(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += '     <td>' + result[i].descricaoTipoCategoria + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroTipoCategoria(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirTipoCategoria(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
                 html += ' </tr> ';
             }
-            $("#dadosFranquia").html(html);
+            $("#dadosTipoCategoria").html(html);
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -67,21 +66,21 @@ function recuperarFranquias() {
     });
 }
 
-function excluirFranquia(id) {
-    $.when(mensagemConfirmacao("BRASA HAMBURGUERIA", "Deseja excluir a franquia?")).then(function (confirmou) {
+function excluirTipoCategoria(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o tipo de categoria?")).then(function (confirmou) {
         if (confirmou) {
             $.ajax({
-                url: recuperarUrlApi() + "Franquias/excluirFranquia?id=" + parseInt(id),
+                url: recuperarUrlApi() + "TipoCategorias/excluirTipoCategoria?id=" + parseInt(id),
                 type: "DELETE",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Franquia excluída com sucesso.");
-                    recuperarFranquias();
+                    notificacaoSucesso("Tipo de categoria excluído com sucesso.");
+                    recuperarTipoCategoria();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir a franquia.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o tipo de categoria.");
                 }
             });
 
@@ -89,9 +88,9 @@ function excluirFranquia(id) {
     });
 }
 
-function recuperarDiasFuncionamento() {
+function recuperarCategorias() {
     $.ajax({
-        url: recuperarUrlApi() + "DiasFuncionamentos/recuperarDiasFuncionamento",
+        url: recuperarUrlApi() + "Categorias/recuperarCategorias",
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -99,16 +98,12 @@ function recuperarDiasFuncionamento() {
             for (var i = 0; i < result.length; i++) {
                 html += ' <tr> ';
                 html += '     <td>' + result[i].id + '</td> ';
-                html += '     <td>' + result[i].franquia.cidade + '</td> ';
-                html += '     <td>' + diaSemana[result[i].diaSemana] + '</td> ';
-                if (result[i].aberto == true)
-                    html += ' <td> Sim </td> ';
-                else
-                    html += ' <td> Não </td> ';
-                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroDiasFuncionamento(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirDiasFuncionamento(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += '     <td>' + result[i].descricaoCategoria + '</td> ';
+                html += '     <td>' + result[i].tipoCategoria.descricaoTipoCategoria + '</td> ';             
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroCategoria(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirCategoria(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
                 html += ' </tr> ';
             }
-            $("#dadosDiaFuncionamento").html(html);
+            $("#dadosCategoria").html(html);
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -116,21 +111,21 @@ function recuperarDiasFuncionamento() {
     });
 }
 
-function excluirDiasFuncionamento(id) {
-    $.when(mensagemConfirmacao("BRASA HAMBURGUERIA", "Deseja excluir o dia de funcionamento?")).then(function (confirmou) {
+function excluirCategoria(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir a categoria?")).then(function (confirmou) {
         if (confirmou) {
             $.ajax({
-                url: recuperarUrlApi() + "DiasFuncionamentos/excluirDiaFuncionamento?id=" + parseInt(id),
+                url: recuperarUrlApi() + "Categorias/excluirCategoria?id=" + parseInt(id),
                 type: "DELETE",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Dia de funcionamento excluído com sucesso.");
-                    recuperarDiasFuncionamento();
+                    notificacaoSucesso("Categoria excluída com sucesso.");
+                    recuperarCategorias();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o dia de funcionamento.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir a categoria.");
                 }
             });
 
@@ -148,7 +143,7 @@ function recuperarHorariosFuncionamento() {
             for (var i = 0; i < result.length; i++) {
                 html += ' <tr> ';
                 html += '     <td>' + result[i].id + '</td> ';
-                html += '     <td>' + diaSemana[result[i].diaFuncionamento.diaSemana] + '</td> ';
+                html += '     <td>' + diaSemana[result[i].categoria.diaSemana] + '</td> ';
                 if (result[i].horaInicio != null)
                     html += '     <td>' + result[i].horaInicio.slice(11, 16) + '</td> ';
                 else
@@ -198,11 +193,11 @@ function cadastroTipoCategoria(id) {
         window.location.href = 'CadastroTipoCategoria.aspx?id=' + id;
 }
 
-function cadastroDiasFuncionamento(id) {
+function cadastroCategoria(id) {
     if (id == null)
-        window.location.href = 'CadastroDiaFuncionamento.aspx';
+        window.location.href = 'CadastroCategoria.aspx';
     else
-        window.location.href = 'CadastroDiaFuncionamento.aspx?id=' + id;
+        window.location.href = 'CadastroCategoria.aspx?id=' + id;
 }
 
 function cadastroHorariosFuncionamento(id) {

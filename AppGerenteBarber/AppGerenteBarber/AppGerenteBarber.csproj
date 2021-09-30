@@ -123,6 +123,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="paginas\cadastros\CadastroCategoria.aspx" />
+    <Content Include="paginas\cadastros\cadastroCategoria.js" />
     <Content Include="paginas\cadastros\CadastroTipoCategoria.aspx" />
     <Content Include="paginas\cadastros\cadastroTipoCategoria.js" />
     <Content Include="paginas\cadastros\Dashboard.aspx" />
@@ -169,6 +171,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroCategoria.aspx.cs">
+      <DependentUpon>CadastroCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroCategoria.aspx.designer.cs">
+      <DependentUpon>CadastroCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="paginas\cadastros\CadastroTipoCategoria.aspx.cs">
       <DependentUpon>CadastroTipoCategoria.aspx</DependentUpon>

@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Brasa Admin - Cadastro franquias</title>
+    <title>Gerente barber - Cadastro serviços</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -23,7 +23,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../../assets/estilos/sb-admin-2.min.css" rel="stylesheet" />
-     <link href="../../assets/estilos/global.css" rel="stylesheet" />
+    <link href="../../assets/estilos/global.css" rel="stylesheet" />
     <link href="../../assets/estilos/global.css" rel="stylesheet" />
 </head>
 
@@ -47,49 +47,47 @@
                                             <a class="nav-link" data-bs-toggle="tab" href="#tipoCategoria">Tipo categoria</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#diaFuncionamento">Dias funcionamento</a>
+                                            <a class="nav-link" data-bs-toggle="tab" href="#categoria">Categoria</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#horarioFuncionamento">Horários funcionamento</a>
                                         </li>
 
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnTipoCategoria" onclick="cadastroTipoCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar tipo categoria</button>
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnDiasFuncionamento" onclick="cadastroDiasFuncionamento()"><i class="fas fa-plus mr-2"></i>Adicionar dia funcionamento</button>
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnHorariosFuncionamento" onclick="cadastroHorariosFuncionamento()"><i class="fas fa-plus mr-2"></i>Adicionar horário funcionamento</button>                                        
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnCategoria" onclick="cadastroCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar categoria</button>
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnHorariosFuncionamento" onclick="cadastroHorariosFuncionamento()"><i class="fas fa-plus mr-2"></i>Adicionar horário funcionamento</button>
                                     </ul>
                                     <div class="tab-content">
-                                        <div id="franquias" class="tab-pane fade in active show">
+                                        <div id="tipoCategoria" class="tab-pane fade in active show">
                                             <div class="card-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Cidade</th>
-                                                                <th>Endereço</th>
+                                                                <th>Tipo categoria</th>
                                                                 <th>Ações</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="dadosFranquia">
+                                                        <tbody id="dadosTipoCategoria">
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="diaFuncionamento" class="tab-pane fade">
+                                        <div id="categoria" class="tab-pane fade">
                                             <div class="card-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Franquia</th>
-                                                                <th>Dia semana</th>
-                                                                <th>Aberto</th>
+                                                                <th>Categoria</th>
+                                                                <th>Tipo categoria</th>                                                                
                                                                 <th>Ações</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="dadosDiaFuncionamento">
+                                                        <tbody id="dadosCategoria">
                                                         </tbody>
                                                     </table>
                                                 </div>

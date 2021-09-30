@@ -22,14 +22,14 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/TipoCategorias
-        [HttpGet]
+        [HttpGet("recuperarTiposCategoria")]
         public async Task<ActionResult<IEnumerable<TipoCategoria>>> GetTiposCategorias()
         {
             return await _context.TiposCategorias.ToListAsync();
         }
 
         // GET: api/TipoCategorias/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarTipoCategoria")]
         public async Task<ActionResult<TipoCategoria>> GetTipoCategoria(int id)
         {
             var tipoCategoria = await _context.TiposCategorias.FindAsync(id);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/TipoCategorias/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirTipoCategoria")]
         public async Task<IActionResult> DeleteTipoCategoria(int id)
         {
             var tipoCategoria = await _context.TiposCategorias.FindAsync(id);

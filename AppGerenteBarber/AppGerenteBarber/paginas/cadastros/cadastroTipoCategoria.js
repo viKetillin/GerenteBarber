@@ -1,12 +1,13 @@
 ﻿var idTipoCategoria = recuperarUrlParametro("id");
 
 $(document).ready(function () {
+    if (idTipoCategoria != null)
     recuperarDadosCardapio();
 });
 
 function recuperarDadosCardapio() {
     $.ajax({
-        url: "https://localhost:44377/api/Cardapios/recuperarCardapio?id=" + parseFloat(idTipoCategoria),
+        url: "https://localhost:44377/api/TipoCategorias/recuperarTipoCategoria?id=" + parseFloat(idTipoCategoria),
         type: "GET",
         dataType: "json",
         success: function (result) {

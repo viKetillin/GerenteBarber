@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroTipoCategoria.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.CadastroTipoCategoria" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroCategoria.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.CadastroCategoria" %>
 
 <%@ Register TagPrefix="UserControl" TagName="SideNav" Src="~/paginas/SideNav.ascx" %>
 <%@ Register TagPrefix="UserControl" TagName="NavBar" Src="~/paginas/NavBar.ascx" %>
@@ -35,16 +35,22 @@
 
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cadastro tipo categoria</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Cadastro categoria</h1>
                     </div>
                     <div class="row">
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="col-lg-6 col-md-12 col-sm-12">
-                                       <div class="form-floating">
-                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Nome tipo categoria">
-                                            <label for="inputDescricao">Tipo categoria</label>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Nome categoria">
+                                            <label for="inputDescricao">Categoria</label>
+                                        </div>
+                                        <div class="divSelect mt-2">
+                                            <select class="form-select" aria-label="Select tipo categoria" id="selectTipoCategoria">
+                                                <option selected>Selecione tipo categoria</option>
+                                            </select>
+                                            <button class="btn btn-dark ml-2" onclick="cadastroTipoCategoria()">Novo tipo categoria</button>
                                         </div>
                                         <div class="mt-2">
                                             <button class="btn btn-success mr-2" onclick="adicionarTipoCategoria()">Salvar</button>
@@ -103,6 +109,7 @@
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/sb-admin-2.js"></script>
     <script src="../../assets/js/global.js"></script>
-    <script src="cadastroTipoCategoria.js"></script>
+    <script src="cadastroCategoria.js"></script>
 </body>
 </html>
+
