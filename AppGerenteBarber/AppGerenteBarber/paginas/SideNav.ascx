@@ -32,61 +32,74 @@
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        Cadastro serviços
+        Cadastro serviços/produtos
     </div>
     <li class="nav-item">
         <a class="nav-link" href="ListaServicos.aspx?menu=tipoCategoria">
-            <i class="fas fa-utensils"></i>
-            <span>Lista serviços</span>
+            <i class="fas fa-clipboard-list"></i>
+            <span>Tipos de categoria</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="ListaServicos.aspx?menu=categoria">
             <i class="fas fa-clipboard-list"></i>
-            <span>Categoria</span>
+            <span>Categorias</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="ListaCardapio.aspx?menu=produto">
-            <i class="fas fa-hamburger"></i>
-            <span>Produto</span>
+        <a class="nav-link" href="ListaServicos.aspx?menu=produto">
+            <i class="far fa-handshake"></i>
+            <span>Produtos / Serviços</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="ListaCardapio.aspx?menu=preco">
-            <i class="fas fa-coins"></i>
-            <span>Preço</span>
+        <a class="nav-link" href="ListaServicos.aspx?menu=preco">
+            <i class="fas fa-tasks"></i>
+            <span>Pedidos</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="ListaServicos.aspx?menu=preco">
+            <i class="far fa-sticky-note"></i>
+            <span>Ordens de serviço</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="ListaServicos.aspx?menu=status">
+            <i class="fas fa-circle"></i>
+            <span>Status</span>
         </a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
 
     <div class="sidebar-heading">
-        Cadastro franquias
+        Cadastro funcionários
     </div>
-
-
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="ListaFranquias.aspx?menu=franquias">
-            <i class="fas fa-store-alt"></i>
-            <span>Franquias</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ListaFranquias.aspx?menu=diaFuncionamento">
-            <i class="far fa-calendar-alt"></i>
-            <span>Dias funcionamento</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ListaFranquias.aspx?menu=horarioFuncionamento">
-            <i class="fas fa-clock"></i>
-            <span>Horários funcionamento</span>
+        <a class="nav-link" href="ListaFuncionarios.aspx?menu=funcionarios">
+            <i class="fas fa-id-card"></i>
+            <span>Funcionários</span>
         </a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
+    <!-- Nav Item - Tables -->
+    <div class="sidebar-heading">
+        Cadastro clientes
+    </div>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="ListaClientes.aspx?menu=clientes">
+            <i class="fas fa-user"></i>
+            <span>Clientes</span>
+        </a>
+    </li>
+
+
+
     <!-- Sidebar Toggler (Sidebar) -->
+      <hr class="sidebar-divider d-none d-md-block" />
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>

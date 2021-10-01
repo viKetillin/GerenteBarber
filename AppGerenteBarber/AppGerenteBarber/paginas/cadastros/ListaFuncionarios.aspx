@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaServicos.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.ListaServicos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaFuncionarios.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.ListaFuncionarios" %>
 
 <%@ Register TagPrefix="UserControl" TagName="SideNav" Src="~/paginas/SideNav.ascx" %>
 <%@ Register TagPrefix="UserControl" TagName="NavBar" Src="~/paginas/NavBar.ascx" %>
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gerente barber - Cadastro serviços</title>
+    <title>Gerente barber - Cadastro funcionários</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -23,7 +23,6 @@
 
     <!-- Custom styles for this template-->
     <link href="../../assets/estilos/sb-admin-2.min.css" rel="stylesheet" />
-    <link href="../../assets/estilos/global.css" rel="stylesheet" />
     <link href="../../assets/estilos/global.css" rel="stylesheet" />
 </head>
 
@@ -44,67 +43,25 @@
                                 <div class="card-body">
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#tipoCategoria">Tipo categoria</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#categoria">Categoria</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" href="#status">Status</a>
+                                            <a class="nav-link" data-bs-toggle="tab" href="#funcionario">Funcionário</a>
                                         </li>
 
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnTipoCategoria" onclick="cadastroTipoCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar tipo categoria</button>
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnCategoria" onclick="cadastroCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar categoria</button>
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnStatus" onclick="cadastroStatus()"><i class="fas fa-plus mr-2"></i>Status</button>
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnFuncionarios" onclick="cadastroFuncionarios()"><i class="fas fa-plus mr-2"></i>Adicionar funcionário</button>
                                     </ul>
                                     <div class="tab-content">
-                                        <div id="tipoCategoria" class="tab-pane fade in active show">
+                                        <div id="funcionario" class="tab-pane fade in active show">
                                             <div class="card-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Tipo categoria</th>
+                                                                <th>Nome funcionário</th>
+                                                                <th>Telefone</th>
                                                                 <th>Ações</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="dadosTipoCategoria">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="categoria" class="tab-pane fade">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" width="100%" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Id</th>
-                                                                <th>Categoria</th>
-                                                                <th>Tipo categoria</th>                                                                
-                                                                <th>Ações</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="dadosCategoria">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="status" class="tab-pane fade">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" width="100%" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Id</th>
-                                                                <th>Status</th>                                                                
-                                                                <th>Ações</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="dadosStatus">
+                                                        <tbody id="dadosfuncionarios">
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -162,6 +119,6 @@
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/sb-admin-2.js"></script>
     <script src="../../assets/js/global.js"></script>
-    <script src="listaServicos.js"></script>
+    <script src="listaFuncionarios.js"></script>
 </body>
 </html>

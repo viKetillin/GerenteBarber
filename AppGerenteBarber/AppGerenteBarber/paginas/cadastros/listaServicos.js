@@ -13,33 +13,33 @@ $(document).ready(function () {
         $('.nav-tabs a[href="#categoria"]').tab('show');
         $("#btnCategoria").show();
         $("#tituloPagina").text("Lista categorias");
-    } else if (menu == "horarioFuncionamento") {
-        $('.nav-tabs a[href="#horarioFuncionamento"]').tab('show');
-        $("#btnHorariosFuncionamento").show();
-        $("#tituloPagina").text("Lista horários funcionamento");
+    } else if (menu == "status") {
+        $('.nav-tabs a[href="#status"]').tab('show');
+        $("#btnStatus").show();
+        $("#tituloPagina").text("Lista status");
     }
 
     $(".nav-tabs").click(function () {
         if ($(".nav-tabs a[href='#tipoCategoria']").hasClass("active") == true) {
             $("#btnTipoCategoria").show();
             $("#btnCategoria").hide();
-            $("#btnHorariosFuncionamento").hide();
+            $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista tipo categorias");
         }
         else if ($('.nav-tabs a[href="#categoria"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").show();
-            $("#btnHorariosFuncionamento").hide();
+            $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista categorias");
         }
-        else if ($('.nav-tabs a[href="#horarioFuncionamento"]').hasClass("active") == true) {
+        else if ($('.nav-tabs a[href="#status"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
-            $("#btnHorariosFuncionamento").show();
+            $("#btnStatus").show();
 
-            $("#tituloPagina").text("Lista horários funcionamento");
+            $("#tituloPagina").text("Lista status");
         }
     });
 });
@@ -99,7 +99,7 @@ function recuperarCategorias() {
                 html += ' <tr> ';
                 html += '     <td>' + result[i].id + '</td> ';
                 html += '     <td>' + result[i].descricaoCategoria + '</td> ';
-                html += '     <td>' + result[i].tipoCategoria.descricaoTipoCategoria + '</td> ';             
+                html += '     <td>' + result[i].tipoCategoria.descricaoTipoCategoria + '</td> ';
                 html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroCategoria(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirCategoria(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
                 html += ' </tr> ';
             }
@@ -133,9 +133,9 @@ function excluirCategoria(id) {
     });
 }
 
-function recuperarHorariosFuncionamento() {
+function recuperarStatus() {
     $.ajax({
-        url: recuperarUrlApi() + "HorariosFuncionamento/recuperarHorarioFuncionamento",
+        url: recuperarUrlApi() + "Status/recuperarStatus",
         type: "GET",
         dataType: "json",
         success: function (result) {
@@ -143,20 +143,11 @@ function recuperarHorariosFuncionamento() {
             for (var i = 0; i < result.length; i++) {
                 html += ' <tr> ';
                 html += '     <td>' + result[i].id + '</td> ';
-                html += '     <td>' + diaSemana[result[i].categoria.diaSemana] + '</td> ';
-                if (result[i].horaInicio != null)
-                    html += '     <td>' + result[i].horaInicio.slice(11, 16) + '</td> ';
-                else
-                    html += '     <td> </td> ';
-
-                if (result[i].horaFim != null)
-                    html += '     <td>' + result[i].horaFim.slice(11, 16) + '</td> ';
-                else
-                    html += '     <td> </td> ';
-                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroHorariosFuncionamento(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirHorarioFuncionamento(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += '     <td>' + result[i].descricaoStatus + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroStatus(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirStatus(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
                 html += ' </tr> ';
             }
-            $("#dadosHorarioFuncionamento").html(html);
+            $("#dadosStatus").html(html);
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -164,21 +155,21 @@ function recuperarHorariosFuncionamento() {
     });
 }
 
-function excluirHorarioFuncionamento(id) {
-    $.when(mensagemConfirmacao("BRASA HAMBURGUERIA", "Deseja excluir o horário de funcionamento?")).then(function (confirmou) {
+function excluirStatus(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o status?")).then(function (confirmou) {
         if (confirmou) {
             $.ajax({
-                url: recuperarUrlApi() + "HorariosFuncionamento/excluirHorarioFuncionamento?id=" + parseInt(id),
+                url: recuperarUrlApi() + "Status/excluirStatus?id=" + parseInt(id),
                 type: "DELETE",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Horário de funcionamento excluído com sucesso.");
-                    recuperarHorariosFuncionamento();
+                    notificacaoSucesso("Status excluído com sucesso.");
+                    recuperarTipoCategoria();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o horário de funcionamento.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o status.");
                 }
             });
 
@@ -200,10 +191,10 @@ function cadastroCategoria(id) {
         window.location.href = 'CadastroCategoria.aspx?id=' + id;
 }
 
-function cadastroHorariosFuncionamento(id) {
+function cadastroStatus(id) {
     if (id == null)
-        window.location.href = 'CadastroHorariosFuncionamento.aspx';
+        window.location.href = 'cadastroStatus.aspx';
     else
-        window.location.href = 'CadastroHorariosFuncionamento.aspx?id=' + id;
+        window.location.href = 'cadastroStatus.aspx?id=' + id;
 }
 

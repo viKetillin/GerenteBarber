@@ -22,14 +22,14 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Clientes
-        [HttpGet]
+        [HttpGet("recuperarClientes")]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
             return await _context.Clientes.ToListAsync();
         }
 
         // GET: api/Clientes/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarCliente")]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);
@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/Clientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarCliente")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
             if (id != cliente.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/Clientes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarCliente")]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
             _context.Clientes.Add(cliente);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/Clientes/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirCliente")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);

@@ -11,8 +11,7 @@ function recuperarDadosCardapio() {
         type: "GET",
         dataType: "json",
         success: function (result) {
-            $("#selectProduto").val(result.produtoPrecoId);
-            $("#selectFranquia").val(result.franquiaId);
+            $("#inputDescricao").val(result.descricaoTipoCategoria);
         },
         error: function (errormessage) {
             alert(errormessage.responseText);

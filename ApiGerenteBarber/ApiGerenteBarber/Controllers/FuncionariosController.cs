@@ -22,14 +22,14 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Funcionarios
-        [HttpGet]
+        [HttpGet("recuperarFuncionarios")]
         public async Task<ActionResult<IEnumerable<Funcionario>>> GetFuncionarios()
         {
             return await _context.Funcionarios.ToListAsync();
         }
 
         // GET: api/Funcionarios/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarFuncionario")]
         public async Task<ActionResult<Funcionario>> GetFuncionario(int id)
         {
             var funcionario = await _context.Funcionarios.FindAsync(id);
@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/Funcionarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarFuncionario")]
         public async Task<IActionResult> PutFuncionario(int id, Funcionario funcionario)
         {
             if (id != funcionario.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/Funcionarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarFuncionario")]
         public async Task<ActionResult<Funcionario>> PostFuncionario(Funcionario funcionario)
         {
             _context.Funcionarios.Add(funcionario);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/Funcionarios/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirFuncionario")]
         public async Task<IActionResult> DeleteFuncionario(int id)
         {
             var funcionario = await _context.Funcionarios.FindAsync(id);

@@ -85,5 +85,5 @@ function cadastroTipoCategoria() {
 }
 
 function listaServicos() {
-    window.location.href = "listaServicos.aspx?menu=tipoCategoria";
+    window.location.href = "listaServicos.aspx?menu=categoria";
 }

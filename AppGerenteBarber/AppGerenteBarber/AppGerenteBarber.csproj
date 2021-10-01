@@ -125,11 +125,21 @@
     <Content Include="Global.asax" />
     <Content Include="paginas\cadastros\CadastroCategoria.aspx" />
     <Content Include="paginas\cadastros\cadastroCategoria.js" />
+    <Content Include="paginas\cadastros\CadastroCliente.aspx" />
+    <Content Include="paginas\cadastros\cadastroCliente.js" />
+    <Content Include="paginas\cadastros\CadastroFuncionario.aspx" />
+    <Content Include="paginas\cadastros\cadastroFuncionario.js" />
+    <Content Include="paginas\cadastros\CadastroStatus.aspx" />
+    <Content Include="paginas\cadastros\cadastroStatus.js" />
     <Content Include="paginas\cadastros\CadastroTipoCategoria.aspx" />
     <Content Include="paginas\cadastros\cadastroTipoCategoria.js" />
     <Content Include="paginas\cadastros\Dashboard.aspx" />
     <Content Include="paginas\cadastros\dashboard.css" />
     <Content Include="paginas\cadastros\dashboard.js" />
+    <Content Include="paginas\cadastros\ListaClientes.aspx" />
+    <Content Include="paginas\cadastros\listaClientes.js" />
+    <Content Include="paginas\cadastros\ListaFuncionarios.aspx" />
+    <Content Include="paginas\cadastros\listaFuncionarios.js" />
     <Content Include="paginas\cadastros\ListaServicos.aspx" />
     <Content Include="paginas\cadastros\listaServicos.css" />
     <Content Include="paginas\cadastros\listaServicos.js" />
@@ -179,6 +189,27 @@
     <Compile Include="paginas\cadastros\CadastroCategoria.aspx.designer.cs">
       <DependentUpon>CadastroCategoria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="paginas\cadastros\CadastroCliente.aspx.cs">
+      <DependentUpon>CadastroCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroCliente.aspx.designer.cs">
+      <DependentUpon>CadastroCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroFuncionario.aspx.cs">
+      <DependentUpon>CadastroFuncionario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroFuncionario.aspx.designer.cs">
+      <DependentUpon>CadastroFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroStatus.aspx.cs">
+      <DependentUpon>CadastroStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroStatus.aspx.designer.cs">
+      <DependentUpon>CadastroStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="paginas\cadastros\CadastroTipoCategoria.aspx.cs">
       <DependentUpon>CadastroTipoCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,6 +223,20 @@
     </Compile>
     <Compile Include="paginas\cadastros\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\ListaClientes.aspx.cs">
+      <DependentUpon>ListaClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\ListaClientes.aspx.designer.cs">
+      <DependentUpon>ListaClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\ListaFuncionarios.aspx.cs">
+      <DependentUpon>ListaFuncionarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\ListaFuncionarios.aspx.designer.cs">
+      <DependentUpon>ListaFuncionarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="paginas\cadastros\ListaServicos.aspx.cs">
       <DependentUpon>ListaServicos.aspx</DependentUpon>

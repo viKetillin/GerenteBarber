@@ -22,7 +22,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Status
-        [HttpGet]
+        [HttpGet("recuperarStatus")]
         public async Task<ActionResult<IEnumerable<Status>>> GetStatus()
         {
             return await _context.Status.ToListAsync();
