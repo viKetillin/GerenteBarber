@@ -29,7 +29,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Status/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarStatusId")]
         public async Task<ActionResult<Status>> GetStatus(int id)
         {
             var status = await _context.Status.FindAsync(id);
@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/Status/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarStatus")]
         public async Task<IActionResult> PutStatus(int id, Status status)
         {
             if (id != status.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/Status
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarStatus")]
         public async Task<ActionResult<Status>> PostStatus(Status status)
         {
             _context.Status.Add(status);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/Status/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirStatus")]
         public async Task<IActionResult> DeleteStatus(int id)
         {
             var status = await _context.Status.FindAsync(id);

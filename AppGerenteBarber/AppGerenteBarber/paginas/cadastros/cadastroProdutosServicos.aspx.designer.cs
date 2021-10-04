@@ -11,7 +11,7 @@ namespace AppGerenteBarber.paginas.cadastros
 {
 
 
-    public partial class CadastroStatus
+    public partial class cadastroProdutosServicos
     {
 
         /// <summary>

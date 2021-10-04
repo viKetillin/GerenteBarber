@@ -3,7 +3,8 @@
 $(document).ready(function () {
     recuperarTipoCategoria();
     recuperarCategorias();
-    //recuperarHorariosFuncionamento();
+    recuperarProdutos();
+    recuperarStatus();
 
     if (menu == "tipoCategoria") {
         $('.nav-tabs a[href="#tipoCategoria"]').tab('show');
@@ -13,6 +14,10 @@ $(document).ready(function () {
         $('.nav-tabs a[href="#categoria"]').tab('show');
         $("#btnCategoria").show();
         $("#tituloPagina").text("Lista categorias");
+    } else if (menu == "produtos") {
+        $('.nav-tabs a[href="#produtos"]').tab('show');
+        $("#btnProdutos").show();
+        $("#tituloPagina").text("Lista produtos / serviços");
     } else if (menu == "status") {
         $('.nav-tabs a[href="#status"]').tab('show');
         $("#btnStatus").show();
@@ -23,20 +28,28 @@ $(document).ready(function () {
         if ($(".nav-tabs a[href='#tipoCategoria']").hasClass("active") == true) {
             $("#btnTipoCategoria").show();
             $("#btnCategoria").hide();
+            $("#btnProdutos").hide();
             $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista tipo categorias");
-        }
-        else if ($('.nav-tabs a[href="#categoria"]').hasClass("active") == true) {
+        } else if ($('.nav-tabs a[href="#categoria"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").show();
+            $("#btnProdutos").hide();
             $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista categorias");
-        }
-        else if ($('.nav-tabs a[href="#status"]').hasClass("active") == true) {
+        } else if ($('.nav-tabs a[href="#produtos"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
+            $("#btnProdutos").show();
+            $("#btnStatus").hide();            
+
+            $("#tituloPagina").text("Lista status");
+        } else if ($('.nav-tabs a[href="#status"]').hasClass("active") == true) {
+            $("#btnTipoCategoria").hide();
+            $("#btnCategoria").hide();
+            $("#btnProdutos").hide();
             $("#btnStatus").show();
 
             $("#tituloPagina").text("Lista status");
@@ -166,10 +179,56 @@ function excluirStatus(id) {
                 data: JSON.stringify({}),
                 success: function (result) {
                     notificacaoSucesso("Status excluído com sucesso.");
-                    recuperarTipoCategoria();
+                    recuperarStatus();
                 },
                 error: function (errormessage) {
                     notificacaoErro("Ocorreu um erro ao tentar excluir o status.");
+                }
+            });
+
+        }
+    });
+}
+
+function recuperarProdutos() {
+    $.ajax({
+        url: recuperarUrlApi() + "ProdutoServicos/recuperarProdutosServicos",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                html += ' <tr> ';
+                html += '     <td>' + result[i].id + '</td> ';
+                html += '     <td>' + result[i].descricaoProdutoServico + '</td> ';
+                html += '     <td>' + result[i].preco + '</td> ';
+                html += '     <td>' + result[i].categoria.descricaoCategoria + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroProdutos(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirProduto(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += ' </tr> ';
+            }
+            $("#dadosProdutos").html(html);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function excluirProduto(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o produto / serviço?")).then(function (confirmou) {
+        if (confirmou) {
+            $.ajax({
+                url: recuperarUrlApi() + "ProdutoServicos/excluirProdutoServico?id=" + parseInt(id),
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({}),
+                success: function (result) {
+                    notificacaoSucesso("Produto / serviço excluído com sucesso.");
+                    recuperarProdutos();
+                },
+                error: function (errormessage) {
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o produto / serviço.");
                 }
             });
 
@@ -189,6 +248,13 @@ function cadastroCategoria(id) {
         window.location.href = 'CadastroCategoria.aspx';
     else
         window.location.href = 'CadastroCategoria.aspx?id=' + id;
+}
+
+function cadastroProdutos(id) {
+    if (id == null)
+        window.location.href = 'cadastroProdutosServicos.aspx';
+    else
+        window.location.href = 'cadastroProdutosServicos.aspx?id=' + id;
 }
 
 function cadastroStatus(id) {

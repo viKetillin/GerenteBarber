@@ -22,14 +22,14 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/ProdutoServicos
-        [HttpGet]
+        [HttpGet("recuperarProdutosServicos")]
         public async Task<ActionResult<IEnumerable<ProdutoServico>>> GetProdutoServicos()
         {
-            return await _context.ProdutoServicos.ToListAsync();
+            return await _context.ProdutoServicos.Include(f => f.Categoria).ToListAsync();
         }
 
         // GET: api/ProdutoServicos/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarProdutoServico")]
         public async Task<ActionResult<ProdutoServico>> GetProdutoServico(int id)
         {
             var produtoServico = await _context.ProdutoServicos.FindAsync(id);
@@ -44,7 +44,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/ProdutoServicos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarProdutoServico")]
         public async Task<IActionResult> PutProdutoServico(int id, ProdutoServico produtoServico)
         {
             if (id != produtoServico.Id)
@@ -75,7 +75,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/ProdutoServicos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarProdutoServico")]
         public async Task<ActionResult<ProdutoServico>> PostProdutoServico(ProdutoServico produtoServico)
         {
             _context.ProdutoServicos.Add(produtoServico);
@@ -85,7 +85,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/ProdutoServicos/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirProdutoServico")]
         public async Task<IActionResult> DeleteProdutoServico(int id)
         {
             var produtoServico = await _context.ProdutoServicos.FindAsync(id);

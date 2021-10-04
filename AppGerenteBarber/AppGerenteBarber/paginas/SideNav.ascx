@@ -47,7 +47,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="ListaServicos.aspx?menu=produto">
+        <a class="nav-link" href="ListaServicos.aspx?menu=produtos">
             <i class="far fa-handshake"></i>
             <span>Produtos / Serviços</span>
         </a>

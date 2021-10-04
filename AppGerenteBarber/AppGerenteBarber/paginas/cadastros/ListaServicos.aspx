@@ -50,11 +50,15 @@
                                             <a class="nav-link" data-bs-toggle="tab" href="#categoria">Categoria</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#produtos">Produtos / Serviços</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#status">Status</a>
                                         </li>
 
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnTipoCategoria" onclick="cadastroTipoCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar tipo categoria</button>
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnCategoria" onclick="cadastroCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar categoria</button>
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnProdutos" onclick="cadastroProdutos()"><i class="fas fa-plus mr-2"></i>Produtos / Serviços</button>
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnStatus" onclick="cadastroStatus()"><i class="fas fa-plus mr-2"></i>Status</button>
                                     </ul>
                                     <div class="tab-content">
@@ -83,11 +87,30 @@
                                                             <tr>
                                                                 <th>Id</th>
                                                                 <th>Categoria</th>
-                                                                <th>Tipo categoria</th>                                                                
+                                                                <th>Tipo categoria</th>
                                                                 <th>Ações</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="dadosCategoria">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="produtos" class="tab-pane fade">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Produto / Serviço</th>
+                                                                <th>Valor</th>
+                                                                <th>Categoria</th>
+                                                                <th>Ações</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="dadosProdutos">
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -100,7 +123,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Status</th>                                                                
+                                                                <th>Status</th>
                                                                 <th>Ações</th>
                                                             </tr>
                                                         </thead>

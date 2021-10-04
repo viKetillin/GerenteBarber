@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroStatus.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.CadastroStatus" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cadastroProdutosServicos.aspx.cs" Inherits="AppGerenteBarber.paginas.cadastros.cadastroProdutosServicos" %>
 
 <%@ Register TagPrefix="UserControl" TagName="SideNav" Src="~/paginas/SideNav.ascx" %>
 <%@ Register TagPrefix="UserControl" TagName="NavBar" Src="~/paginas/NavBar.ascx" %>
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gerente barber - Cadastro status</title>
+    <title>Gerente barber - Cadastro produtos / serviços</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -35,7 +35,7 @@
 
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cadastro status</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Cadastro produtos / serviços</h1>
                     </div>
                     <div class="row">
                         <div class="col-xl-12 col-lg-12">
@@ -43,12 +43,22 @@
                                 <div class="card-body">
                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Nome status">
-                                            <label for="inputDescricao">Status</label>
+                                            <input type="text" class="form-control" id="inputDescricao" placeholder="Nome produto / serviço">
+                                            <label for="inputDescricao">Produto / Serviço</label>
+                                        </div>   
+                                        <div class="form-floating mt-2">
+                                            <input type="number" class="form-control" id="inputPreco" placeholder="Valor">
+                                            <label for="inputPreco">Valor</label>
+                                        </div>
+                                          <div class="divSelect mt-2">
+                                            <select class="form-select" aria-label="Select categoria" id="selectCategoria">
+                                                <option selected>Selecione a categoria</option>
+                                            </select>
+                                            <button class="btn btn-dark ml-2" onclick="cadastroCategoria()">Nova categoria</button>
                                         </div>
                                         <div class="mt-2">
-                                            <button class="btn btn-success mr-2" onclick="adicionarStatus()">Salvar</button>
-                                            <button class="btn btn-secondary" onclick="listaServico()">Cancelar</button>
+                                            <button class="btn btn-success mr-2" onclick="adicionarProduto()">Salvar</button>
+                                            <button class="btn btn-secondary" onclick="listaServicos()">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -103,6 +113,6 @@
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/sb-admin-2.js"></script>
     <script src="../../assets/js/global.js"></script>
-    <script src="cadastroStatus.js"></script>
+    <script src="cadastroProdutosServicos.js"></script>
 </body>
 </html>
