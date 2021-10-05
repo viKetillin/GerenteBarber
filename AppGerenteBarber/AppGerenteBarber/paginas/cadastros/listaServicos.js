@@ -4,6 +4,7 @@ $(document).ready(function () {
     recuperarTipoCategoria();
     recuperarCategorias();
     recuperarProdutos();
+    recuperarOrdensServicos();
     recuperarStatus();
 
     if (menu == "tipoCategoria") {
@@ -18,6 +19,10 @@ $(document).ready(function () {
         $('.nav-tabs a[href="#produtos"]').tab('show');
         $("#btnProdutos").show();
         $("#tituloPagina").text("Lista produtos / serviços");
+    } else if (menu == "ordensServico") {
+        $('.nav-tabs a[href="#ordemServico"]').tab('show');
+        $("#btnOrdemServico").show();
+        $("#tituloPagina").text("Lista ordens de serviço");
     } else if (menu == "status") {
         $('.nav-tabs a[href="#status"]').tab('show');
         $("#btnStatus").show();
@@ -29,6 +34,7 @@ $(document).ready(function () {
             $("#btnTipoCategoria").show();
             $("#btnCategoria").hide();
             $("#btnProdutos").hide();
+            $("#btnOrdemServico").hide();
             $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista tipo categorias");
@@ -36,6 +42,7 @@ $(document).ready(function () {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").show();
             $("#btnProdutos").hide();
+            $("#btnOrdemServico").hide();
             $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista categorias");
@@ -43,13 +50,23 @@ $(document).ready(function () {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
             $("#btnProdutos").show();
-            $("#btnStatus").hide();            
+            $("#btnOrdemServico").hide();
+            $("#btnStatus").hide();
+
+            $("#tituloPagina").text("Lista status");
+        } else if ($('.nav-tabs a[href="#ordemServico"]').hasClass("active") == true) {
+            $("#btnTipoCategoria").hide();
+            $("#btnCategoria").hide();
+            $("#btnProdutos").hide();
+            $("#btnOrdemServico").show();            
+            $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista status");
         } else if ($('.nav-tabs a[href="#status"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
             $("#btnProdutos").hide();
+            $("#btnOrdemServico").hide();
             $("#btnStatus").show();
 
             $("#tituloPagina").text("Lista status");
@@ -146,50 +163,6 @@ function excluirCategoria(id) {
     });
 }
 
-function recuperarStatus() {
-    $.ajax({
-        url: recuperarUrlApi() + "Status/recuperarStatus",
-        type: "GET",
-        dataType: "json",
-        success: function (result) {
-            var html = "";
-            for (var i = 0; i < result.length; i++) {
-                html += ' <tr> ';
-                html += '     <td>' + result[i].id + '</td> ';
-                html += '     <td>' + result[i].descricaoStatus + '</td> ';
-                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroStatus(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirStatus(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
-                html += ' </tr> ';
-            }
-            $("#dadosStatus").html(html);
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
-        }
-    });
-}
-
-function excluirStatus(id) {
-    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o status?")).then(function (confirmou) {
-        if (confirmou) {
-            $.ajax({
-                url: recuperarUrlApi() + "Status/excluirStatus?id=" + parseInt(id),
-                type: "DELETE",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({}),
-                success: function (result) {
-                    notificacaoSucesso("Status excluído com sucesso.");
-                    recuperarStatus();
-                },
-                error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o status.");
-                }
-            });
-
-        }
-    });
-}
-
 function recuperarProdutos() {
     $.ajax({
         url: recuperarUrlApi() + "ProdutoServicos/recuperarProdutosServicos",
@@ -236,6 +209,101 @@ function excluirProduto(id) {
     });
 }
 
+function recuperarOrdensServicos() {
+    $.ajax({
+        url: recuperarUrlApi() + "OrdemServicos/recuperarOrdensServicos",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                var date = new Date(result[i].data);
+
+                html += ' <tr> ';
+                html += '     <td>' + result[i].id + '</td> ';
+                html += '     <td>' + ("0" + date.getDate()).slice(-2) + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + '</td> ';
+                html += '     <td>' + result[i].hora.slice(11, 16) + '</td> ';
+                html += '     <td>' + result[i].valorTotal + '</td> ';
+                html += '     <td>' + result[i].cliente.nomeCliente + '</td> ';
+                html += '     <td>' + result[i].funcionario.nomeFuncionario + '</td> ';
+                html += '     <td>' + result[i].status.descricaoStatus + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroOrdemServico(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirOrdemServico(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += ' </tr> ';
+            }
+            $("#dadosOrdensServico").html(html);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function excluirOrdemServico(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir a ordem de serviço?")).then(function (confirmou) {
+        if (confirmou) {
+            $.ajax({
+                url: recuperarUrlApi() + "OrdemServicos/excluirOrdemServico?id=" + parseInt(id),
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({}),
+                success: function (result) {
+                    notificacaoSucesso("Ordem de serviço excluída com sucesso.");
+                    recuperarOrdensServicos();
+                },
+                error: function (errormessage) {
+                    notificacaoErro("Ocorreu um erro ao tentar excluir a ordem de serviço.");
+                }
+            });
+
+        }
+    });
+}
+
+function recuperarStatus() {
+    $.ajax({
+        url: recuperarUrlApi() + "Status/recuperarStatus",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                html += ' <tr> ';
+                html += '     <td>' + result[i].id + '</td> ';
+                html += '     <td>' + result[i].descricaoStatus + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroStatus(' + result[i].id + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirStatus(' + result[i].id + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += ' </tr> ';
+            }
+            $("#dadosStatus").html(html);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function excluirStatus(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o status?")).then(function (confirmou) {
+        if (confirmou) {
+            $.ajax({
+                url: recuperarUrlApi() + "Status/excluirStatus?id=" + parseInt(id),
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({}),
+                success: function (result) {
+                    notificacaoSucesso("Status excluído com sucesso.");
+                    recuperarStatus();
+                },
+                error: function (errormessage) {
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o status.");
+                }
+            });
+
+        }
+    });
+}
+
 function cadastroTipoCategoria(id) {
     if (id == null)
         window.location.href = 'CadastroTipoCategoria.aspx';
@@ -255,6 +323,13 @@ function cadastroProdutos(id) {
         window.location.href = 'cadastroProdutosServicos.aspx';
     else
         window.location.href = 'cadastroProdutosServicos.aspx?id=' + id;
+}
+
+function cadastroOrdemServico(id) {
+    if (id == null)
+        window.location.href = 'cadastroOrdemServico.aspx';
+    else
+        window.location.href = 'cadastroOrdemServico.aspx?id=' + id;
 }
 
 function cadastroStatus(id) {

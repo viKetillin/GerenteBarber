@@ -22,14 +22,17 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/OrdemServicos
-        [HttpGet]
+        [HttpGet("recuperarOrdensServicos")]
         public async Task<ActionResult<IEnumerable<OrdemServico>>> GetOrdemServicos()
         {
-            return await _context.OrdemServicos.ToListAsync();
+            return await _context.OrdemServicos.Include(f => f.Cliente)
+                                               .Include(f => f.Funcionario)
+                                               .Include(f => f.Status)
+                                               .ToListAsync();
         }
 
         // GET: api/OrdemServicos/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarOrdemServico")]
         public async Task<ActionResult<OrdemServico>> GetOrdemServico(int id)
         {
             var ordemServico = await _context.OrdemServicos.FindAsync(id);
@@ -44,7 +47,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/OrdemServicos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarOrdemServico")]
         public async Task<IActionResult> PutOrdemServico(int id, OrdemServico ordemServico)
         {
             if (id != ordemServico.Id)
@@ -75,7 +78,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/OrdemServicos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarOrdemServico")]
         public async Task<ActionResult<OrdemServico>> PostOrdemServico(OrdemServico ordemServico)
         {
             _context.OrdemServicos.Add(ordemServico);
@@ -85,7 +88,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/OrdemServicos/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirOrdemServico")]
         public async Task<IActionResult> DeleteOrdemServico(int id)
         {
             var ordemServico = await _context.OrdemServicos.FindAsync(id);

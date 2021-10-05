@@ -128,3 +128,13 @@ function toIsoString(date) {
         dif + pad(tzo / 60) +
         ':' + pad(tzo % 60);
 }
+
+function toDate(dateStr) {
+    var parts = dateStr.split("-");
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+function toDateEn(dateStr) {
+    var date = new Date(dateStr);
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + ("0" + date.getDate()).slice(-2);
+}

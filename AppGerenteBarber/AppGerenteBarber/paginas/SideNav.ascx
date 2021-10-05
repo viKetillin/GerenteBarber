@@ -59,7 +59,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="ListaServicos.aspx?menu=preco">
+        <a class="nav-link" href="ListaServicos.aspx?menu=ordensServico">
             <i class="far fa-sticky-note"></i>
             <span>Ordens de serviço</span>
         </a>
