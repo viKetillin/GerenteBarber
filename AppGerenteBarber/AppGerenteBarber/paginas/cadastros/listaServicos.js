@@ -53,7 +53,7 @@ $(document).ready(function () {
             $("#btnOrdemServico").hide();
             $("#btnStatus").hide();
 
-            $("#tituloPagina").text("Lista status");
+            $("#tituloPagina").text("Lista produtos / serviços");
         } else if ($('.nav-tabs a[href="#ordemServico"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
@@ -61,7 +61,7 @@ $(document).ready(function () {
             $("#btnOrdemServico").show();            
             $("#btnStatus").hide();
 
-            $("#tituloPagina").text("Lista status");
+            $("#tituloPagina").text("Lista ordens de serviço");
         } else if ($('.nav-tabs a[href="#status"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
