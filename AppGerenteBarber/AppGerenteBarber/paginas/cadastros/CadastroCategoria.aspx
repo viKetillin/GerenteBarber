@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="mt-2">
                                             <button class="btn btn-success mr-2" onclick="adicionarTipoCategoria()">Salvar</button>
-                                            <button class="btn btn-secondary" onclick="listaServico()">Cancelar</button>
+                                            <button class="btn btn-secondary" onclick="listaServicos()">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
