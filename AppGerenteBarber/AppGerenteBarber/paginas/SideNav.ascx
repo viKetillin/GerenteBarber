@@ -53,7 +53,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="ListaServicos.aspx?menu=preco">
+        <a class="nav-link" href="ListaServicos.aspx?menu=pedidos">
             <i class="fas fa-tasks"></i>
             <span>Pedidos</span>
         </a>

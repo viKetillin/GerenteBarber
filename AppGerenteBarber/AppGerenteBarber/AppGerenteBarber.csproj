@@ -131,8 +131,10 @@
     <Content Include="paginas\cadastros\cadastroFuncionario.js" />
     <Content Include="paginas\cadastros\CadastroOrdemServico.aspx" />
     <Content Include="paginas\cadastros\cadastroOrdemServico.js" />
+    <Content Include="paginas\cadastros\CadastroPedidos.aspx" />
     <Content Include="paginas\cadastros\cadastroProdutosServicos.aspx" />
     <Content Include="paginas\cadastros\cadastroProdutosServicos.js" />
+    <Content Include="paginas\cadastros\cadastrosPedidos.js" />
     <Content Include="paginas\cadastros\CadastroStatus.aspx" />
     <Content Include="paginas\cadastros\cadastroStatus.js" />
     <Content Include="paginas\cadastros\CadastroTipoCategoria.aspx" />
@@ -213,6 +215,13 @@
     </Compile>
     <Compile Include="paginas\cadastros\CadastroOrdemServico.aspx.designer.cs">
       <DependentUpon>CadastroOrdemServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroPedidos.aspx.cs">
+      <DependentUpon>CadastroPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paginas\cadastros\CadastroPedidos.aspx.designer.cs">
+      <DependentUpon>CadastroPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="paginas\cadastros\cadastroProdutosServicos.aspx.cs">
       <DependentUpon>cadastroProdutosServicos.aspx</DependentUpon>

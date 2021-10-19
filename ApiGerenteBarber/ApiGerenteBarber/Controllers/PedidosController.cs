@@ -22,14 +22,20 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // GET: api/Pedidos
-        [HttpGet]
+        [HttpGet("recuperarPedidos")]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
         {
-            return await _context.Pedidos.ToListAsync();
+            return await _context.Pedidos.Include(f => f.OrdemServico)
+                                         .ThenInclude( f => f.Cliente)      
+                                         .Include(f => f.OrdemServico)
+                                         .ThenInclude(f => f.Funcionario)
+                                         .Include(f => f.OrdemServico)
+                                         .ThenInclude(f => f.Status)
+                                         .Include(f => f.ProdutoServico).ToListAsync();
         }
 
         // GET: api/Pedidos/5
-        [HttpGet("{id}")]
+        [HttpGet("recuperarPedido")]
         public async Task<ActionResult<Pedido>> GetPedido(int id)
         {
             var pedido = await _context.Pedidos.FindAsync(id);
@@ -44,7 +50,7 @@ namespace ApiGerenteBarber.Controllers
 
         // PUT: api/Pedidos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("editarPedido")]
         public async Task<IActionResult> PutPedido(int id, Pedido pedido)
         {
             if (id != pedido.IdPedido)
@@ -75,7 +81,7 @@ namespace ApiGerenteBarber.Controllers
 
         // POST: api/Pedidos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("adicionarPedido")]
         public async Task<ActionResult<Pedido>> PostPedido(Pedido pedido)
         {
             _context.Pedidos.Add(pedido);
@@ -85,7 +91,7 @@ namespace ApiGerenteBarber.Controllers
         }
 
         // DELETE: api/Pedidos/5
-        [HttpDelete("{id}")]
+        [HttpDelete("excluirPedido")]
         public async Task<IActionResult> DeletePedido(int id)
         {
             var pedido = await _context.Pedidos.FindAsync(id);

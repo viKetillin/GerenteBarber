@@ -53,15 +53,19 @@
                                             <a class="nav-link" data-bs-toggle="tab" href="#produtos">Produtos / Serviços</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#pedidos">Pedidos</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#ordemServico">Ordens de serviço</a>
-                                        </li> 
+                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-bs-toggle="tab" href="#status">Status</a>
                                         </li>
 
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnTipoCategoria" onclick="cadastroTipoCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar tipo categoria</button>
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnCategoria" onclick="cadastroCategoria()"><i class="fas fa-plus mr-2"></i>Adicionar categoria</button>
-                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnProdutos" onclick="cadastroProdutos()"><i class="fas fa-plus mr-2"></i>Produtos / Serviços</button>
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnProdutos" onclick="cadastroProdutos()"><i class="fas fa-plus mr-2"></i>Produtos / Serviços</button>   
+                                        <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnPedidos" onclick="cadastroPedidos()"><i class="fas fa-plus mr-2"></i>Pedidos</button>
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnOrdemServico" onclick="cadastroOrdemServico()"><i class="fas fa-plus mr-2"></i>Adicionar ordem de serviço</button>
                                         <button class="btn btn-secondary ml-auto mb-1" style="display: none;" id="btnStatus" onclick="cadastroStatus()"><i class="fas fa-plus mr-2"></i>Status</button>
                                     </ul>
@@ -119,7 +123,30 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>     
+                                        </div> 
+                                        <div id="pedidos" class="tab-pane fade">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Data</th>
+                                                                <th>Hora</th>
+                                                                <th>Produto</th>
+                                                                <th>Valor</th>
+                                                                <th>Cliente</th>
+                                                                <th>Funcionário</th>
+                                                                <th>Status</th>
+                                                                <th>Ações</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="dadosPedidos">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div id="ordemServico" class="tab-pane fade">
                                             <div class="card-body">
                                                 <div class="table-responsive">

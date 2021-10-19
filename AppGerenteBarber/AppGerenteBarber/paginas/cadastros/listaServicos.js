@@ -4,6 +4,7 @@ $(document).ready(function () {
     recuperarTipoCategoria();
     recuperarCategorias();
     recuperarProdutos();
+    recuperarPedidos();
     recuperarOrdensServicos();
     recuperarStatus();
 
@@ -19,6 +20,10 @@ $(document).ready(function () {
         $('.nav-tabs a[href="#produtos"]').tab('show');
         $("#btnProdutos").show();
         $("#tituloPagina").text("Lista produtos / serviços");
+    } else if (menu == "pedidos") {
+        $('.nav-tabs a[href="#pedidos"]').tab('show');
+        $("#btnPedidos").show();
+        $("#tituloPagina").text("Lista pedidos");
     } else if (menu == "ordensServico") {
         $('.nav-tabs a[href="#ordemServico"]').tab('show');
         $("#btnOrdemServico").show();
@@ -34,6 +39,7 @@ $(document).ready(function () {
             $("#btnTipoCategoria").show();
             $("#btnCategoria").hide();
             $("#btnProdutos").hide();
+            $("#btnPedidos").hide();
             $("#btnOrdemServico").hide();
             $("#btnStatus").hide();
 
@@ -42,6 +48,7 @@ $(document).ready(function () {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").show();
             $("#btnProdutos").hide();
+            $("#btnPedidos").hide();
             $("#btnOrdemServico").hide();
             $("#btnStatus").hide();
 
@@ -54,10 +61,20 @@ $(document).ready(function () {
             $("#btnStatus").hide();
 
             $("#tituloPagina").text("Lista produtos / serviços");
+        } else if ($('.nav-tabs a[href="#pedidos"]').hasClass("active") == true) {
+            $("#btnTipoCategoria").hide();
+            $("#btnCategoria").hide();
+            $("#btnProdutos").hide();
+            $("#btnPedidos").show();
+            $("#btnOrdemServico").hide();
+            $("#btnStatus").hide();
+
+            $("#tituloPagina").text("Lista pedidos");
         } else if ($('.nav-tabs a[href="#ordemServico"]').hasClass("active") == true) {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
             $("#btnProdutos").hide();
+            $("#btnPedidos").hide();
             $("#btnOrdemServico").show();            
             $("#btnStatus").hide();
 
@@ -66,6 +83,7 @@ $(document).ready(function () {
             $("#btnTipoCategoria").hide();
             $("#btnCategoria").hide();
             $("#btnProdutos").hide();
+            $("#btnPedidos").hide();
             $("#btnOrdemServico").hide();
             $("#btnStatus").show();
 
@@ -106,11 +124,11 @@ function excluirTipoCategoria(id) {
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Tipo de categoria excluído com sucesso.");
+                    notificacaoSucesso("Registro excluído com sucesso.");
                     recuperarTipoCategoria();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o tipo de categoria.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o registro.");
                 }
             });
 
@@ -197,11 +215,63 @@ function excluirProduto(id) {
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Produto / serviço excluído com sucesso.");
+                    notificacaoSucesso("Registro excluído com sucesso.");
                     recuperarProdutos();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o produto / serviço.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o registro.");
+                }
+            });
+
+        }
+    });
+}
+
+function recuperarPedidos() {
+    $.ajax({
+        url: recuperarUrlApi() + "Pedidos/recuperarPedidos",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            var html = "";
+            for (var i = 0; i < result.length; i++) {
+                var date = new Date(result[i].ordemServico.data);
+
+                html += ' <tr> ';
+                html += '     <td>' + result[i].idPedido + '</td> ';
+                html += '     <td>' + ("0" + date.getDate()).slice(-2) + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + '</td> ';
+                html += '     <td>' + result[i].ordemServico.hora.slice(11, 16) + '</td> ';
+                html += '     <td>' + result[i].produtoServico.descricaoProdutoServico + '</td> ';
+                html += '     <td>R$ ' + (result[i].produtoServico.preco).toFixed(2) + '</td> ';
+                html += '     <td>' + result[i].ordemServico.cliente.nomeCliente + '</td> ';
+                html += '     <td>' + result[i].ordemServico.funcionario.nomeFuncionario + '</td> ';
+                html += '     <td>' + result[i].ordemServico.status.descricaoStatus + '</td> ';
+                html += '     <td><button class="btn btn-danger mr-2" onclick="cadastroPedidos(' + result[i].idPedido + ')"><i class="fas fa-pencil-alt"></i></button><button class="btn btn-secondary" onclick="excluirPedidos(' + result[i].idPedido + ')"><i class="far fa-trash-alt"></i></button></td> ';
+                html += ' </tr> ';
+            }
+            $("#dadosPedidos").html(html);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+
+function excluirPedidos(id) {
+    $.when(mensagemConfirmacao("GERENTE BARBER", "Deseja excluir o pedido?")).then(function (confirmou) {
+        if (confirmou) {
+            $.ajax({
+                url: recuperarUrlApi() + "Pedidos/excluirPedido?id=" + parseInt(id),
+                type: "DELETE",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({}),
+                success: function (result) {
+                    notificacaoSucesso("Registro excluído com sucesso.");
+                    recuperarPedidos();
+                },
+                error: function (errormessage) {
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o registro.");
                 }
             });
 
@@ -292,11 +362,11 @@ function excluirStatus(id) {
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({}),
                 success: function (result) {
-                    notificacaoSucesso("Status excluído com sucesso.");
+                    notificacaoSucesso("Registro excluído com sucesso.");
                     recuperarStatus();
                 },
                 error: function (errormessage) {
-                    notificacaoErro("Ocorreu um erro ao tentar excluir o status.");
+                    notificacaoErro("Ocorreu um erro ao tentar excluir o registro.");
                 }
             });
 
@@ -323,6 +393,13 @@ function cadastroProdutos(id) {
         window.location.href = 'cadastroProdutosServicos.aspx';
     else
         window.location.href = 'cadastroProdutosServicos.aspx?id=' + id;
+}
+
+function cadastroPedidos(id) {
+    if (id == null)
+        window.location.href = 'cadastroPedidos.aspx';
+    else
+        window.location.href = 'cadastroPedidos.aspx?id=' + id;
 }
 
 function cadastroOrdemServico(id) {
